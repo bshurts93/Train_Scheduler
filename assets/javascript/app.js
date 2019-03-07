@@ -11,6 +11,9 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+// Time Variables
+var now = moment().format("HH:mm");
+
 // Add train data to firebase on submit
 
 $("#add-train").on("click", function() {
@@ -29,6 +32,7 @@ $("#add-train").on("click", function() {
   var frequency = $("#frequency-input")
     .val()
     .trim();
+  // var nextArrival = now.subtract()
 
   var newTrain = {
     name: name,
@@ -38,6 +42,28 @@ $("#add-train").on("click", function() {
   };
 
   database.ref().push(newTrain);
+});
 
-  // Get user input data
+database.ref().on("child_added", function(childSnapshot) {
+  // Assign values to each child's data
+  var childName = childSnapshot.val().name;
+  var childDestination = childSnapshot.val().destination;
+  var childFirstTrain = childSnapshot.val().firstTrain;
+  var childFrequency = childSnapshot.val().frequency;
+
+  //   console.log(childName);
+  //   console.log(childDestination);
+  //   console.log(childFirstTrain);
+  //   console.log(childFrequency);
+
+  // Create new table row
+  var newRow = $("<tr>");
+  // Add each child item to row (IN ORDER)
+  newRow.append("<td>" + childName + "</td>");
+  newRow.append("<td>" + childDestination + "</td>");
+  newRow.append("<td>" + childFrequency + "</td>");
+  newRow.append("<td>" + "next-arrival" + "</td>"); // This will calculate to be the next arrival
+  newRow.append("<td>" + "minutes-away" + "</td>"); // This will calculate to be the minutes away
+
+  $("#train-list").append(newRow);
 });
