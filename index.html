@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Train Schedule</title>
+
+    <!-- Bootstrap CDN -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Train Schedule</h1>
+      </div>
+
+      <div class="card">
+        <div class="card-header">Current Train Schedule</div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Train Name</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Frequency (min)</th>
+                <th scope="col">Next Arrival</th>
+                <th scope="col">Minutes Away</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>GEN-34</td>
+                <td>Chicago</td>
+                <td>65</td>
+                <td>4:07pm</td>
+                <td>37</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card add-train-card">
+        <div class="card-header">Add Train</div>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <label for="train-name-input">Train Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="train-name-input"
+                placeholder="Enter train name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="destination-input">Destination</label>
+              <input
+                type="text"
+                class="form-control"
+                id="destination-input"
+                placeholder="Enter destination"
+              />
+            </div>
+            <div class="form-group">
+              <label for="first-train-input"
+                >First Train Time (HH:mm - military time)</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="first-train-input"
+                placeholder="Enter first train time"
+              />
+            </div>
+            <div class="form-group">
+              <label for="frequency-input">Frequency</label>
+              <input
+                type="text"
+                class="form-control"
+                id="frequency-input"
+                placeholder="Enter frequency"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary" id="add-train">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- BootstrapJS and jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
+
+    <!-- App.js -->
+    <script src="assets/javascript/app.js"></script>
+  </body>
+</html>
