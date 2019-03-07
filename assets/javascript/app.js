@@ -32,7 +32,6 @@ $("#add-train").on("click", function() {
   var frequency = $("#frequency-input")
     .val()
     .trim();
-  // var nextArrival = now.subtract()
 
   var newTrain = {
     name: name,
@@ -42,19 +41,25 @@ $("#add-train").on("click", function() {
   };
 
   database.ref().push(newTrain);
+  console.log("clicked");
 });
 
 database.ref().on("child_added", function(childSnapshot) {
   // Assign values to each child's data
   var childName = childSnapshot.val().name;
   var childDestination = childSnapshot.val().destination;
-  var childFirstTrain = childSnapshot.val().firstTrain;
   var childFrequency = childSnapshot.val().frequency;
-
+  var childFirstTrain = childSnapshot.val().firstTrain;
+  var nextArrival = moment(childFirstTrain, "HH:mm")
+    .add(childFrequency, "minutes")
+    .format("HH:mm");
   //   console.log(childName);
   //   console.log(childDestination);
   //   console.log(childFirstTrain);
   //   console.log(childFrequency);
+  console.log(childFirstTrain);
+  console.log(childFrequency);
+  console.log("Next arrival is " + nextArrival); // STILL NOT CORRECT, NEEDS TO UPDATE ON CONCURRENT TRAINS
 
   // Create new table row
   var newRow = $("<tr>");
