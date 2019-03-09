@@ -87,12 +87,6 @@ database.ref().on("child_added", function(childSnapshot) {
 
   var minutesLeft = getMinutesLeft(childFrequency, childFirstTrain);
   var nextTrain = getNextArrival(childFrequency, childFirstTrain);
-  console.log(nextTrain);
-  console.log(minutesLeft);
-  //   console.log(childName);
-  //   console.log(childDestination);
-  //   console.log(childFirstTrain);
-  //   console.log(childFrequency);
 
   // Create new table row
   var newRow = $("<tr>");
