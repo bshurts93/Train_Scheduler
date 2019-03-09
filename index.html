@@ -13,16 +13,22 @@
       crossorigin="anonymous"
     />
 
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Oswald"
+      rel="stylesheet"
+    />
+
     <!-- Stylesheet -->
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
     <div class="container">
       <div class="header-box">
-        <h1>Train Schedule</h1>
+        <h1>trAin schedule</h1>
       </div>
-      <div class="card">
-        <div class="card-header">Current Train Schedule</div>
+      <div class="card train-display-card">
+        <div class="card-header">current trAin schedule</div>
         <div class="card-body">
           <table class="table table-striped">
             <thead>
@@ -40,7 +46,7 @@
       </div>
 
       <div class="card add-train-card">
-        <div class="card-header">Add Train</div>
+        <div class="card-header">Add train</div>
         <div class="card-body">
           <form>
             <div class="row">
@@ -72,7 +78,7 @@
               <div class="col">
                 <div class="form-group">
                   <label for="first-train-input"
-                    >First Train Time (HH:mm - military time)</label
+                    >First Train Time (HHmm - military time)</label
                   >
                   <input
                     type="number"
@@ -84,7 +90,7 @@
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label for="frequency-input">Frequency</label>
+                  <label for="frequency-input">Frequency (minutes)</label>
                   <input
                     type="number"
                     class="form-control"

@@ -75,7 +75,9 @@ $("#add-train").on("click", function() {
   };
 
   database.ref().push(newTrain);
-  console.log("clicked");
+
+  // Clear fields
+  $("form :input").val("");
 });
 
 database.ref().on("child_added", function(childSnapshot) {
