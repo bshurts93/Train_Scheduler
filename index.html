@@ -17,11 +17,10 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="jumbotron">
+    <div class="container-fluid">
+      <div class="header-box">
         <h1>Train Schedule</h1>
       </div>
-
       <div class="card">
         <div class="card-header">Current Train Schedule</div>
         <div class="card-body">
@@ -67,7 +66,7 @@
                 >First Train Time (HH:mm - military time)</label
               >
               <input
-                type="text"
+                type="number"
                 class="form-control"
                 id="first-train-input"
                 placeholder="Enter first train time"
@@ -76,7 +75,7 @@
             <div class="form-group">
               <label for="frequency-input">Frequency</label>
               <input
-                type="text"
+                type="number"
                 class="form-control"
                 id="frequency-input"
                 placeholder="Enter frequency"

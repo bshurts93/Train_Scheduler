@@ -1,3 +1,13 @@
+/* HEADER */
+.header-box {
+  background-color: rgb(212, 212, 212);
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin: 1rem auto;
+}
+
+/* FORM */
+
 .add-train-card {
   margin-top: 2rem;
 }

@@ -14,6 +14,40 @@ var database = firebase.database();
 // Time Variables
 var now = moment().format("HH:mm");
 
+// Time Calculations
+
+function getMinutesLeft(frequency, firstTime) {
+  var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+
+  // Difference between the times
+  var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+
+  // Time apart (remainder)
+  var timeRemainder = diffTime % frequency;
+
+  // Minute Until Train
+  var minutesTillNext = frequency - timeRemainder;
+  return minutesTillNext;
+}
+
+function getNextArrival(frequency, firstTime) {
+  var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+
+  // Difference between the times
+  var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+
+  // Time apart (remainder)
+  var timeRemainder = diffTime % frequency;
+
+  // Minute Until Train
+  var minutesTillNext = frequency - timeRemainder;
+
+  // Next Train
+  var nextTrain = moment()
+    .add(minutesTillNext, "minutes")
+    .format("HH:mm");
+  return nextTrain;
+}
 // Add train data to firebase on submit
 
 $("#add-train").on("click", function() {
@@ -50,16 +84,15 @@ database.ref().on("child_added", function(childSnapshot) {
   var childDestination = childSnapshot.val().destination;
   var childFrequency = childSnapshot.val().frequency;
   var childFirstTrain = childSnapshot.val().firstTrain;
-  var nextArrival = moment(childFirstTrain, "HH:mm")
-    .add(childFrequency, "minutes")
-    .format("HH:mm");
+
+  var minutesLeft = getMinutesLeft(childFrequency, childFirstTrain);
+  var nextTrain = getNextArrival(childFrequency, childFirstTrain);
+  console.log(nextTrain);
+  console.log(minutesLeft);
   //   console.log(childName);
   //   console.log(childDestination);
   //   console.log(childFirstTrain);
   //   console.log(childFrequency);
-  console.log(childFirstTrain);
-  console.log(childFrequency);
-  console.log("Next arrival is " + nextArrival); // STILL NOT CORRECT, NEEDS TO UPDATE ON CONCURRENT TRAINS
 
   // Create new table row
   var newRow = $("<tr>");
@@ -67,8 +100,8 @@ database.ref().on("child_added", function(childSnapshot) {
   newRow.append("<td>" + childName + "</td>");
   newRow.append("<td>" + childDestination + "</td>");
   newRow.append("<td>" + childFrequency + "</td>");
-  newRow.append("<td>" + "next-arrival" + "</td>"); // This will calculate to be the next arrival
-  newRow.append("<td>" + "minutes-away" + "</td>"); // This will calculate to be the minutes away
+  newRow.append("<td>" + nextTrain + "</td>"); // This will calculate to be the next arrival
+  newRow.append("<td>" + minutesLeft + "</td>"); // This will calculate to be the minutes away
 
   $("#train-list").append(newRow);
 });
