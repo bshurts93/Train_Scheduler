@@ -80,6 +80,7 @@ $("#add-train").on("click", function() {
   $("form :input").val("");
 });
 
+// Load from Firebase
 database.ref().on("child_added", function(childSnapshot) {
   // Assign values to each child's data
   var childName = childSnapshot.val().name;
@@ -101,3 +102,6 @@ database.ref().on("child_added", function(childSnapshot) {
 
   $("#train-list").append(newRow);
 });
+
+// Display current time on DOM
+$("#current-time").text(now);
