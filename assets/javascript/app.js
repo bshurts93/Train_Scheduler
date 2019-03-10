@@ -50,7 +50,7 @@ function getNextArrival(frequency, firstTime) {
 }
 // Add train data to firebase on submit
 
-$("#add-train").on("click", function() {
+$("#add-train").on("click", function () {
   // Prevent submit from reloading page
   event.preventDefault();
 
@@ -81,7 +81,7 @@ $("#add-train").on("click", function() {
 });
 
 // Load from Firebase
-database.ref().on("child_added", function(childSnapshot) {
+database.ref().on("child_added", function (childSnapshot) {
   // Assign values to each child's data
   var childName = childSnapshot.val().name;
   var childDestination = childSnapshot.val().destination;
@@ -91,6 +91,10 @@ database.ref().on("child_added", function(childSnapshot) {
   var minutesLeft = getMinutesLeft(childFrequency, childFirstTrain);
   var nextTrain = getNextArrival(childFrequency, childFirstTrain);
 
+  var deleteBtn = $("<button>");
+  deleteBtn.addClass("btn btn-primary btn-delete")
+  deleteBtn.append("<i class='icon ion-md-close'></i>");
+
   // Create new table row
   var newRow = $("<tr>");
   // Add each child item to row (IN ORDER)
@@ -99,6 +103,7 @@ database.ref().on("child_added", function(childSnapshot) {
   newRow.append("<td>" + childFrequency + "</td>");
   newRow.append("<td>" + nextTrain + "</td>"); // This will calculate to be the next arrival
   newRow.append("<td>" + minutesLeft + "</td>"); // This will calculate to be the minutes away
+  newRow.append(deleteBtn);
 
   $("#train-list").append(newRow);
 });

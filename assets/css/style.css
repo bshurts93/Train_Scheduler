@@ -55,6 +55,10 @@ input {
 
 /* TRAINS DISPLAY */
 
+.btn-delete {
+  width: 2rem;
+}
+
 /* FORM */
 
 .add-train-card {
