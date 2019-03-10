@@ -91,9 +91,12 @@ database.ref().on("child_added", function (childSnapshot) {
   var minutesLeft = getMinutesLeft(childFrequency, childFirstTrain);
   var nextTrain = getNextArrival(childFrequency, childFirstTrain);
 
+  // Delete td and button prepared
   var deleteBtn = $("<button>");
   deleteBtn.addClass("btn btn-primary btn-delete")
   deleteBtn.append("<i class='icon ion-md-close'></i>");
+  var deleteTd = $("<td>");
+  deleteTd.append(deleteBtn);
 
   // Create new table row
   var newRow = $("<tr>");
@@ -103,7 +106,9 @@ database.ref().on("child_added", function (childSnapshot) {
   newRow.append("<td>" + childFrequency + "</td>");
   newRow.append("<td>" + nextTrain + "</td>"); // This will calculate to be the next arrival
   newRow.append("<td>" + minutesLeft + "</td>"); // This will calculate to be the minutes away
-  newRow.append(deleteBtn);
+  newRow.append(deleteTd);
+
+
 
   $("#train-list").append(newRow);
 });

@@ -57,6 +57,7 @@ input {
 
 .btn-delete {
   width: 2rem;
+  margin-top: auto 0;
 }
 
 /* FORM */
