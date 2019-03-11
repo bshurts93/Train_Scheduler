@@ -100,10 +100,23 @@ database.ref().on("child_added", function (childSnapshot) {
 
   // Create new table row
   var newRow = $("<tr>");
+
+  // Assign IDs to each item
+  var newName = $("<td>");
+  newName.attr("id", childName);
+  newName.text(childName);
+  var newDestination = $("<td>");
+  newDestination.attr("class", childDestination);
+  newDestination.text(childDestination);
+  var newFrequency = $("<td>");
+  newFrequency.attr("class", childFrequency);
+  newFrequency.text(childFrequency);
+
+
   // Add each child item to row (IN ORDER)
-  newRow.append("<td>" + childName + "</td>");
-  newRow.append("<td>" + childDestination + "</td>");
-  newRow.append("<td>" + childFrequency + "</td>");
+  newRow.append(newName);
+  newRow.append(newDestination);
+  newRow.append(newFrequency);
   newRow.append("<td>" + nextTrain + "</td>"); // This will calculate to be the next arrival
   newRow.append("<td>" + minutesLeft + "</td>"); // This will calculate to be the minutes away
   newRow.append(deleteTd);
@@ -115,3 +128,7 @@ database.ref().on("child_added", function (childSnapshot) {
 
 // Display current time on DOM
 $("#current-time").text(now);
+
+// Delete Click Event
+$(document).on("click", ".btn-delete", function () {
+});
