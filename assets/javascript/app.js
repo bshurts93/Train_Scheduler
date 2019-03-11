@@ -139,3 +139,8 @@ $(document).on("click", ".btn-delete", function () {
   database.ref(btnID).remove();
   $("." + btnID).remove();
 });
+
+$(document).on("hover", ".btn-delete", function () {
+  $(".header-box").css("background-color", "yellow");
+  console.log("hovered");
+});

@@ -8,16 +8,27 @@ body {
   font-family: "Oswald", sans-serif;
   height: 100%;
   background-image: url("../images/funky-lines.png");
+  padding: 2rem 0;
 }
 
 input {
   border: 1px solid #1c1259;
 }
 
+td {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+/* tr:hover {
+  background-color: #ee426770!important;
+} */
+
 /* BOOTSTRAP */
 
 .card {
   border: none;
+  margin-bottom: 2rem;
 }
 
 .card-header {
@@ -58,7 +69,14 @@ input {
 .btn-delete {
   width: 2rem;
   margin-top: auto 0;
+  background-color: #fcd307;
+  color: #1c1259;
 }
+
+.btn-delete:hover {
+  background-color: #ee4266;
+}
+
 
 /* FORM */
 
