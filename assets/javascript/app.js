@@ -87,6 +87,7 @@ database.ref().on("child_added", function (childSnapshot) {
   var childDestination = childSnapshot.val().destination;
   var childFrequency = childSnapshot.val().frequency;
   var childFirstTrain = childSnapshot.val().firstTrain;
+  var childKey = childSnapshot.key;
 
   var minutesLeft = getMinutesLeft(childFrequency, childFirstTrain);
   var nextTrain = getNextArrival(childFrequency, childFirstTrain);
@@ -94,31 +95,34 @@ database.ref().on("child_added", function (childSnapshot) {
   // Delete td and button prepared
   var deleteBtn = $("<button>");
   deleteBtn.addClass("btn btn-primary btn-delete")
+  deleteBtn.attr("id", childKey);
   deleteBtn.append("<i class='icon ion-md-close'></i>");
   var deleteTd = $("<td>");
   deleteTd.append(deleteBtn);
 
   // Create new table row
   var newRow = $("<tr>");
+  newRow.attr("class", childKey);
 
   // Assign IDs to each item
   var newName = $("<td>");
-  newName.attr("id", childName);
-  newName.text(childName);
+  newName.addClass(childName).text(childName);
   var newDestination = $("<td>");
-  newDestination.attr("class", childDestination);
-  newDestination.text(childDestination);
+  newDestination.addClass(childDestination).text(childDestination);
   var newFrequency = $("<td>");
-  newFrequency.attr("class", childFrequency);
-  newFrequency.text(childFrequency);
+  newFrequency.addClass(childFrequency).text(childFrequency);
+  var newNextTrain = $("<td>");
+  newNextTrain.addClass(nextTrain).text(nextTrain);
+  var newMinutesLeft = $("<td>");
+  newMinutesLeft.addClass(minutesLeft).text(minutesLeft);
 
 
   // Add each child item to row (IN ORDER)
   newRow.append(newName);
   newRow.append(newDestination);
   newRow.append(newFrequency);
-  newRow.append("<td>" + nextTrain + "</td>"); // This will calculate to be the next arrival
-  newRow.append("<td>" + minutesLeft + "</td>"); // This will calculate to be the minutes away
+  newRow.append(newNextTrain); // This will calculate to be the next arrival
+  newRow.append(newMinutesLeft); // This will calculate to be the minutes away
   newRow.append(deleteTd);
 
 
@@ -131,4 +135,7 @@ $("#current-time").text(now);
 
 // Delete Click Event
 $(document).on("click", ".btn-delete", function () {
+  var btnID = $(this).attr("id");
+  database.ref(btnID).remove();
+  $("." + btnID).remove();
 });
